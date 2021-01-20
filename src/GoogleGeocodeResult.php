@@ -33,7 +33,7 @@ class GoogleGeocodeResult
 
     public function formattedAddress()
     {
-        return $this->results['formatted_address'] ?? null;
+        return $this->result['formatted_address'] ?? null;
     }
 
     public function streetNumber()
