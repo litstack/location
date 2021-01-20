@@ -57,8 +57,8 @@ export default {
         },
         getLocationFromModel() {
             return {
-                lat: this.model[this.field.lat_key],
-                lng: this.model[this.field.lng_key],
+                lat: parseFloat(this.model[this.field.lat_key]),
+                lng: parseFloat(this.model[this.field.lng_key]),
             };
         },
         setMarker(location) {
