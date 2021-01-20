@@ -2,6 +2,11 @@
 
 ## Setup
 
+In order to use the location field you need an Google-API-Key with the following APIs activated:
+
+-   Maps JavaScript
+-   Places API
+
 Add this to your `lit` config.
 
 ```php
