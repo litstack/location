@@ -6,7 +6,7 @@ Add this to your `lit` config.
 
 ```php
 'location' => [
-  'google_api_key' => env('GOOGLE_API_KEY'),
+    'google_api_key' => env('GOOGLE_API_KEY'),
 ],
 ```
 
@@ -20,6 +20,6 @@ You can save further information from the Places-API like this:
 
 ```php
 $form->map('lat', 'lng', [
-  'formatted_address' => 'address', // saves the formatted_address attribute in the address column of your model
+    'formatted_address' => 'address', // saves the formatted_address attribute in the address column of your model
 ]);
 ```
