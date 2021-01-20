@@ -1,0 +1,43 @@
+{
+    "name": "litstack/location",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cbl",
+            "email": "lennart.carbe@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "autoload": {
+        "psr-4": {
+            "Litstack\\Location\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "litstack/litstack": "^3.0"
+    },
+    "require-dev": {
+        "litstack/rehearsal": "^1.0.1",
+        "phpunit/phpunit": "^9.4",
+        "mockery/mockery": "^1.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Litstack\\Location\\LocationServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
