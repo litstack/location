@@ -19,9 +19,7 @@ class LocationServiceProvider extends ServiceProvider
         Form::field('map', MapField::class);
         Lit::script(__DIR__.'/../dist/location.js');
 
-        if ($key = config('lit.location.google_api_key')) {
-            Lit::script("https://maps.googleapis.com/maps/api/js?key={$key}&libraries=places");
-        }
+        $this->app[\Ignite\Application\Kernel::class]->addMiddleware(LocationMiddleware::class);
     }
 
     /**
