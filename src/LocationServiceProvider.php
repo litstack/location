@@ -2,26 +2,16 @@
 
 namespace Litstack\Location;
 
-use Ignite\Support\Facades\Form;
+use Ignite\Crud\Form;
+use Ignite\Application\Kernel;
+use Ignite\Foundation\Litstack;
 use Ignite\Support\Facades\Lit;
 use Ignite\Support\Facades\Route;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class LocationServiceProvider extends ServiceProvider
 {
-    /**
-     * Register application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        Form::field('map', MapField::class);
-        Lit::script(__DIR__.'/../dist/location.js');
-
-        $this->app[\Ignite\Application\Kernel::class]->addMiddleware(LocationMiddleware::class);
-    }
-
     /**
      * Boot application services.
      *
@@ -29,6 +19,17 @@ class LocationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::post('maps/places', [PlacesController::class, 'search']);
+        $this->callAfterResolving('lit.form', function(Form $form) {
+            $form->field('map', MapField::class);
+        });
+        $this->callAfterResolving('lit', function(Litstack $lit) {
+            $lit->script(__DIR__.'/../dist/location.js');
+        });
+        $this->callAfterResolving(Kernel::class, function(Kernel $kernel) {
+            $kernel->addMiddleware(LocationMiddleware::class);
+        });
+        $this->callAfterResolving('router', function(Router $router) {
+            $router->post('maps/places', [PlacesController::class, 'search']);
+        });
     }
 }
